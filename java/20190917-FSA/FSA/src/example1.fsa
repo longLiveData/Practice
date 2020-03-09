@@ -1,0 +1,6 @@
+state q1 20 10
+state q0 10 10
+state q2 11 11
+transition q0 ev q1
+initial q0
+final q1

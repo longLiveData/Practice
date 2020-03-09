@@ -1,0 +1,5 @@
+hello hadoop
+hello mapreduce
+use hadoop
+hello wsh
+

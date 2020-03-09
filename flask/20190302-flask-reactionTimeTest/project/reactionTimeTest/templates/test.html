@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<style>
+    textarea.ui-input-text { min-height: 80px; text-align: center; }
+</style>
+<script>
+    // 原始数据
+    var target = ["工人阶级","先锋队","人民公仆","先锋模范","社会主义核心价值观",
+                "科学发展观","三个代表","共产主义","为人民服务","以人民为中心",
+                "民主集中制","从严治党","共同富裕","坚持四项基本原则","坚持改革开放",
+                "一国两制","群众路线","八项规定","两学一做","人类命运共同体",
+                "四个自信","一带一路","战斗堡垒","五位一体总体布局","四个全面战略布局",
+                "可持续发展","中国梦","人民当家做主","不忘初心，牢记使命",
+                "精准扶贫","社会主义和谐社会","“两个一百年”奋斗目标"];
+    var targetCopy = target.slice(0); // 复制一份 在生成数据的过程中原数组会被破坏 后面会用到
+    var disturb = ["帝国主义","霸权主义","国会","私人俱乐部","三民主义",
+                "民主宪政","联邦议会制","内阁","世袭制","北约",
+                "普世价值","殖民扩张","总统制","单边主义思想","强权政治",
+                "冷战思维","超级大国","和平演变","种族歧视","多党执政"];
+    var middle = ["社会人","时尚","皮皮虾","单身狗","王者荣耀",
+                "哈士奇","C位","互联网","佛系青年","英雄联盟",
+                "老司机","狼人杀","天猫","矿泉水","洪荒之力",
+                "比特币","锦鲤","剁手","诗和远方","确认过眼神"];
+
+    // 生成四十个数据
+    var dataArr = [];
+    let count = 0;
+    let tarNum = 20;
+    let disNum = 10;
+    let midNum = 10;
+    for (let i=0; i<tarNum; i++){
+        let r = Math.floor(Math.random() * target.length);
+        dataArr.push(target[r]);
+        target.splice(r,1);
+    }
+    for (let i=0; i<disNum; i++){
+        let r = Math.floor(Math.random() * disturb.length);
+        dataArr.push(disturb[r]);
+        disturb.splice(r,1);
+    }
+    for (let i=0; i<midNum; i++){
+        let r = Math.floor(Math.random() * middle.length);
+        dataArr.push(middle[r]);
+        middle.splice(r,1);
+    }
+    
+    // 打乱数据
+    var len = dataArr.length
+    for(let t=0; t<5; t++){ //循环5次 彻底打乱
+        for(var i=0;i<len;i++){
+        var end = len - 1 ;
+        var index = (Math.random()*(end + 1)) >> 0;
+        var tm = dataArr[end];
+        dataArr[end] = dataArr[index];
+        dataArr[index] = tm;
+        }
+    }
+    
+    // 生成答案数组ansNum
+    var ansNum = [];
+    for (var i=0;i<len;i++){
+        var str = dataArr[i];
+        if(targetCopy.indexOf(str) < 0){
+            ansNum.push(0);
+        }else{
+            ansNum.push(1);
+        }
+    }
+
+    // 定义结果集
+    var curr = 0;
+    var stop = 5;
+    var corrCount = 0;
+    var startTime = new Date(); // 开始时间
+    var timeArr = [];  // 时间数组
+    var resArr = [];  //结果数组
+
+    // 显示下一个单词
+    function showNext(){
+        $('#inst').parent("div").css('display','none');
+        $('#startbtn').parent("div").css('display','none');
+        $('#termInput').parent("div").css('display','');
+        if(curr < stop){
+            $('#yes').parent("div").css('display','none');
+            $('#no').parent("div").css('display','none');
+            document.getElementById("termInput").value = dataArr[curr];
+            setTimeout(timeOver, 800);
+        }else{
+            $('#yes').parent("div").css('display','none');
+            $('#no').parent("div").css('display','none');
+            $('#resbtn').parent("div").css('display','');
+            $('#startbtn').parent("div").css('display','none');
+        }
+    }
+
+    // 800ms结束切换状态并记录开始时间
+    function timeOver(){
+        $('#yes').parent("div").css('display','');
+        $('#no').parent("div").css('display','');
+        document.getElementById("termInput").value = "";
+        startTime = new Date();
+    }
+
+    // 点击是按钮：记录反应时间和反应结果
+    function clickYes(){
+        let endTime = new Date();
+        timeArr.push(endTime - startTime);
+
+        if(ansNum[curr] == 1){
+            resArr.push(1);
+            corrCount += 1;
+        }else{
+            resArr.push(0);
+        }
+        curr ++;
+        showNext();
+    }
+
+    // 点击否按钮：记录反应时间和反应结果
+    function clickNo(){
+        let endTime = new Date();
+        timeArr.push(endTime - startTime);
+        if(ansNum[curr] == 0){
+            resArr.push(1);
+            corrCount += 1;
+        }else{
+            resArr.push(0);
+        }
+        curr ++;
+        showNext();
+    }
+
+    // 将词信息、反应结果和时间信息json发送到后台
+    function goToResult(){
+        $('#resbtn').parent("div").css('display','none');
+        var termRes = "";
+        var corrRes = "";
+        var timeRes = "";
+        for(var k=0; k<stop; k++){
+            termRes += dataArr[k].toString() + " ";
+            corrRes += resArr[k].toString() + " ";
+            timeRes += timeArr[k].toString() + " ";
+        }
+
+        var sex = localStorage.getItem("sex");
+        var poli = localStorage.getItem("poli");
+        var grade = localStorage.getItem("grade");
+        var type = localStorage.getItem("type");
+
+        $.post("/calc", 
+            {"sex":sex, "poli":poli, "grade":grade, "type":type, "term":termRes, "corr":corrRes, "time":timeRes}, 
+            function(data){
+                 var rate = Math.round(corrCount / stop *100);
+                 var showStr = "";
+                 if(rate > 75){
+                    showStr += "恭喜你完成测验,\n";
+                    showStr += "正确率" + rate.toString()+ "%,\n"
+                    showStr += "很棒！\n";
+                 }else if(rate >= 50 ){
+                    showStr += "感谢您完成测验,\n";
+                    showStr += "正确率" + rate.toString() + "%,\n"
+                    showStr += "不错！\n";
+                 }else{
+                    showStr += "感谢您完成测验,\n";
+                    showStr += "正确率" + rate.toString() + "%,\n"
+                    showStr += "加油，继续努力！\n";
+                 }
+                 $('#showRes').parent("div").css('display','');
+                 $('#termInput').parent("div").css('display','none');
+                 document.getElementById("showRes").value = showStr;
+        },"json");
+    }
+
+    function init(){
+        $('#termInput').parent("div").css('display','none');
+        $('#yes').parent("div").css('display','none');
+        $('#no').parent("div").css('display','none');
+        $('#resbtn').parent("div").css('display','none');
+        $('#showRes').parent("div").css('display','none');
+    }
+
+</script>
+
+</head>
+<body onload=init()>
+
+<div data-role="page" id="pageone">
+
+    <div data-role="header">
+        <h1>党课小测试</h1>
+    </div>
+
+    <div data-role="content" class="ui-content">
+        <div>
+            <div id="inst">
+                <p>三、正式测试</p> 
+                <p>下面为正式测试。</p>
+                <p>请判断以下出现的词条是否为描述“中国共产党或其相关政策”。若是点"YES"，否则点"NO"。</p>
+                <p>准备好了点"开始测试"开始.</p> 
+            </div>
+        </div>
+        
+        <input id="startbtn" type="button" value="开始测试" onclick="showNext()">    
+        <input id="termInput" type="text" style="font-size: 23px;text-align: center" readonly><br>
+        <input id="yes" type="button" value="YES" style="background-color:green;font-size: 20px;" onclick="clickYes()"><br>
+        <input id="no" type="button" value="NO" style="background-color:red;font-size: 20px;" onclick="clickNo()">
+
+        <input id="resbtn" type="button" onclick=goToResult(); value="查看结果">
+        <div>
+            <textarea id="showRes" readonly="readonly" ></textarea>
+        </div>
+    </div>
+
+</div> 
+
+</body>
+</html>

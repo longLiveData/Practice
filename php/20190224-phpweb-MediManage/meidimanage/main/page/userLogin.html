@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <script type="text/javascript" src="../js/userLogin.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body style="margin:0px;">
+    <div style="margin: 0 auto;padding:0px;height:937px;width:1591px;background-image: url('../../admin/image/bg.jpg');">
+
+        <div style="position: relative;left:650px;top:280px; width:300px;height:250px;border:1px solid black;
+                border-radius: 30px;">
+
+            <label class="showLabel" style="left:20px;top:40px;">学号:</label>
+            <input class="textInput" style="left:20px;top:40px;" id="user_id" type="text"><br><br>
+
+            <label class="showLabel" style="left:20px;top:40px;" >密码:</label>
+            <input class="textInput" style="left:20px;top:40px;" id="user_pwd" type="password">
+
+            <input class="midBtn" id="btn_login" type="button" onclick="userLogin()" value="登录"
+                   style="left:50px;top:70px;">
+
+        </div>
+
+        <div style="position: fixed;top: 20px;left:0px;right:0px;text-align: center;">
+            <label style="font-size:50px;font-family: '微软雅黑 Light'; color:cadetblue;font-weight: bold;">学生健康管理系统</label>
+        </div>
+        <div style="position: fixed;bottom: 15px;left:0px;right:0px;text-align: center;">
+            <label style="font-size:24px;">秦皇岛市新一路小学</label>
+        </div>
+
+    </div>
+</body>
+</html>

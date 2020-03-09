@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<script>
+    //初始化
+    let terms = ["习近平", "文在寅", "汪洋", "特朗普", "栗战书", "特蕾莎梅", "李克强", "普京", "李显龙", "巴育"];
+    let showTerm = [];
+    let stop = 2;
+
+    for (let i=0; i<stop; i++){
+        let r = Math.floor(Math.random() * terms.length);
+        showTerm.push(terms[r]);
+        terms.splice(r,1);
+    }
+
+    var curr = 0;
+    let startTimeArr = [];
+    var endTimeArr = [];
+    var timeArr = [];
+    var judgeArr = [];
+
+    function showNext(){ 
+        $('#inst').parent("div").css('display','none'); 
+        $('#next_step').parent("div").css('display','none'); 
+        if(curr < stop){
+            $('#termInput').parent("div").css('display','');
+            $('#yes').parent("div").css('display','none');
+            $('#no').parent("div").css('display','none');
+
+            document.getElementById("termInput").value = showTerm[curr];
+
+            setTimeout(timeOver, 800);
+
+        }else{
+            $('#termInput').parent("div").css('display','none');
+            $('#yes').parent("div").css('display','none');
+            $('#no').parent("div").css('display','none');
+            $('#tryAgain').parent("div").css('display','');
+            $('#goToTest').parent("div").css('display','');
+        }
+    }
+
+    function timeOver(){
+        document.getElementById("termInput").value = "";
+        $('#yes').parent("div").css('display','');
+        $('#no').parent("div").css('display','');
+        var startTime = new Date();
+        startTimeArr.push(startTime);
+    }
+
+    function clickYes(){
+        let endTime = new Date();
+        timeArr.push(endTime - startTimeArr[curr]);
+        curr ++;
+        judgeArr.push(1);
+        showNext();
+    }
+
+    function clickNo(){
+        let endTime = new Date();
+        timeArr.push(endTime - startTimeArr[curr]);
+        curr ++;
+        judgeArr.push(0);
+        showNext();
+    }
+
+    function goToTest(){
+        window.location.href="test";
+    }
+
+    function tryAgain(){
+        window.location.href="perTest";
+    }
+
+    function init(){
+        $('#termInput').parent("div").css('display','none');
+        $('#yes').parent("div").css('display','none');
+        $('#no').parent("div").css('display','none');
+        $('#tryAgain').parent("div").css('display','none');
+        $('#goToTest').parent("div").css('display','none');
+        $('#goToTest').css('height','40px');
+    }
+</script>
+
+</head>
+<body onload=init()>
+
+<div data-role="page" id="pageone">
+
+    <div data-role="header">
+        <h1>党课小测试</h1>
+    </div>
+
+    <div data-role="content" class="ui-content">
+        <div>
+            <div id="inst">
+                <p>二、测前练习</p>
+                <p>下面测试为练习，不是正式测试，点“下一步”开始。</p>
+                <p>判断下列出现的词条是否属于中国共产党领导人，是请选择"yes"，否请选择"no"</p>
+                <p>没看清请凭直觉选择。</p>
+            </div>
+        </div>
+        
+
+        <input id="next_step" type="button" onclick=showNext();  value="下一步">
+        <input id="termInput" type="text" style="font-size:23px;text-align: center" readonly><br>
+              
+        <input id="yes" type="button" onclick=clickYes(); style="background-color: green" value="YES"><br>
+        <input id="no" type="button" onclick=clickNo(); style="background-color: red" value="NO">
+
+        <input id="tryAgain" type="button" onclick=tryAgain(); value="再试一次">
+        <input id="goToTest" type="button" onclick=goToTest(); value="进入测试">
+    </div>
+
+</div> 
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python362",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false, // 调试时停止在第一句 
+            "pythonPath": "E:/python362/python362",
+            "program": "${file}",
+            "cwd": "${workspaceRoot}",
+            "env": {},
+            "envFile": "${workspaceRoot}/.env"
+        }
+    ]
+}

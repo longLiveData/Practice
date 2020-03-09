@@ -1,0 +1,97 @@
+.bigBtn{
+    position: relative;
+    height:50px;
+    width:250px;
+    font-family: 楷体;
+    font-weight: bold;
+    font-size: 30px;
+    background-color: darkblue;
+    border:none;
+    color:white;
+    text-align:center;
+    line-height: 20px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.sideBtn{
+    position: relative;
+    height:40px;
+    width:200px;
+    font-family: 楷体;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: lightskyblue;
+    border:none;
+    color:black;
+    text-align:center;
+    line-height: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+.midBtn{
+    position: relative;
+    height:40px;
+    width:200px;
+    font-family: 楷体;
+    font-size: 30px;
+    background-color: darkblue;
+    border:none;
+    color:white;
+    text-align:center;
+    line-height: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.smallBtn{
+    position: relative;
+    height:30px;
+    width:100px;
+    font-family: 楷体;
+    font-size: 18px;
+    background-color: darkblue;
+    border:none;
+    color:white;
+    text-align:center;
+    line-height: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.showLabel{
+    position: relative;
+    font-family: 宋体;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.textInput{
+    position: relative;
+    font-family: 宋体;
+    font-size: 26px;
+    height:28px;
+    width:200px;
+}
+
+.textArea{
+    position: relative;
+    border:0px;
+    background: lightblue;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.noticeTopic{
+    font-size:40px;
+}
+
+.noticeInfo{
+    font-size:20px;
+}
+
+.noticeContent{
+    font-size:30px;
+}

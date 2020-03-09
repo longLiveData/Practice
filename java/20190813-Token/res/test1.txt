@@ -1,0 +1,9 @@
+!! Find the area and circumference of a rectangle 
+variable Length , Width: real 
+variable  Area,  Circum : real 
+output "Enter the Length and Width of the rectangle: " 
+input Length , Width 
+set Area = Length * Width 
+set Circum = (Length +  Width) * 2 
+output "Area = " , Area  
+output "Circumference = " , Circum 

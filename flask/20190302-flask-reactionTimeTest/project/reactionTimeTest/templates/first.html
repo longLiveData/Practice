@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<script>
+
+    // 页面加载时隐藏信息收集页
+    function showPage(){
+        $('#getInfo').parent("div").css('display','none');
+    }
+
+    // 点击换页时隐藏提示页 显示信息获取页
+    function goToGetInfo(){
+        $('#mention').parent("div").css('display','none');
+        $('#getInfo').parent("div").css('display','');
+    }
+
+    // 进入练习页
+    function goToPreTest(){
+        // 获取信息存入localStorage
+        var sexNum = $("input[name='sex']:checked").val();
+        if(typeof(sexNum) == "undefined"){
+            alert("请选择性别！");
+            return;
+        }
+
+        var poliNum = $("input[name='poli']:checked").val();
+        if(typeof(poliNum) == "undefined"){
+            alert("请选择政治面貌！");
+            return;
+        }
+
+        var gradeNum = $("input[name='grade']:checked").val();
+        if(typeof(gradeNum) == "undefined"){
+            alert("请选择年级！");
+            return;
+        }
+
+        var typeNum = $("input[name='type']:checked").val();
+        if(typeof(typeNum) == "undefined"){
+            alert("请选择学习方向！");
+            return;
+        }
+
+        localStorage.setItem("sex",sexNum);
+        localStorage.setItem("poli", poliNum);
+        localStorage.setItem("grade",gradeNum);
+        localStorage.setItem("type", typeNum);
+        window.location.href="perTest";
+    }
+</script>
+
+</head>
+<body onload="showPage()">
+
+<div data-role="page" id="pageone">
+
+    <div data-role="header">
+        <h1>党课小测试</h1>
+    </div>
+
+    <div data-role="content" class="ui-content" >
+        <div>
+            <div id="mention">
+                    <p>感谢您参与本测试！</p>
+                    <p>本次测试结果仅用于学术研究，无好坏之分、不记名，请认真作答。</p>
+                    <input id="btn" type="button" onclick=goToGetInfo(); value="进入测试">
+            </div>
+                
+        </div>
+
+        <div>
+            <div id="getInfo">
+
+                <p>一、基本信息</p>
+                <p>1.您的性别是：</p>
+                <form >
+                    <label>男<input id="male"   name="sex" type="radio" value="男" ></label>
+                    <label>女<input id="female" name="sex" type="radio" value="女" ></label>
+                </form>
+
+                <p>2.您政治面貌：</p>
+                <form>
+                    <label>群众       <input  name="poli" type="radio" value="群众" ></label>
+                    <label>入党积极分子<input  name="poli" type="radio" value="入党积极分子" ></label>
+                    <label>预备党员   <input  name="poli" type="radio" value="预备党员" ></label>
+                    <label>党员       <input  name="poli" type="radio" value="党员" ></label>
+                </form>
+
+                <p>3.您的年级是：</p>
+                <form>
+                    <label>大一<input  name="grade" type="radio" value="大一" ></label>
+                    <label>大二<input  name="grade" type="radio" value="大二" ></label>
+                    <label>大三<input  name="grade" type="radio" value="大三" ></label>
+                    <label>大四<input  name="grade" type="radio" value="大四" ></label>
+                </form>
+
+                <p>4.您所学习的方向是：</p>
+                <form>
+                    <label>文科  <input  name="type" type="radio" value="文科" ></label>
+                    <label>理工科<input  name="type" type="radio" value="理工科"></label>
+                    <label>艺术  <input  name="type" type="radio" value="艺术" ></label>
+                </form>
+
+                <input id="btn" type="button" onclick=goToPreTest();  value="进入练习">
+            </div>
+        </div>
+        
+
+    </div>
+
+</div> 
+
+</body>
+</html>

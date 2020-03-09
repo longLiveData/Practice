@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本信息</title>
+    <script type="text/javascript" src="../js/userInfoView.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body onload="userInfoView()" style="margin:0px;">
+
+    <div style="margin: 0 auto;padding:0px;height:937px;width:1591px;background-image: url('../image/bg.jpg');">
+
+        <div  style="position: relative;left:80px;top:200px; width:500px;height:500px;">
+            <input class="sideBtn" type="button" value="回到主页"
+                   onclick="window.location.href='mainPage.html'"><br><br>
+            <input class="sideBtn" type="button" value="基本信息查看" style="background-color: brown"
+                   onclick="window.location.href='userInfoView.html'"><br><br>
+            <input class="sideBtn" type="button" value="修改密码"
+                   onclick="window.location.href='userModifyPwd.html'"><br><br>
+            <input class="sideBtn" type="button" value="信息查看"
+                   onclick="window.location.href='userNoticeView.html'"><br><br>
+            <input class="sideBtn" type="button" value="我要请假"
+                   onclick="window.location.href='userAskLeave.html'"><br><br>
+            <input class="sideBtn" type="button" value="我要销假"
+                   onclick="window.location.href='userReportBack.html'"><br><br>
+            <input class="sideBtn" type="button" value="请假记录查看"
+                   onclick="window.location.href='userLeaveView.html'"><br><br>
+        </div>
+
+        <textarea class="textArea" id="user_info" readonly="readonly"
+                  style="height:250px;width:340px;top:-250px;left:550px;padding: 50px;"></textarea>
+
+    </div>
+
+    <div style="position: fixed;top: 20px;left:0px;right:0px;text-align: center;">
+        <label style="font-size:50px;font-family: '微软雅黑 Light'; color:cadetblue;font-weight: bold;">学生健康管理系统</label>
+    </div>
+    <div style="position: fixed;bottom: 15px;left:0px;right:0px;text-align: center;">
+        <label style="font-size:24px;">秦皇岛市新一路小学</label>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+!! reads the score (mark) of a student (on a scale from 0 -100) and prints the student¡¯s assessment
+!! note: pass mark is 60
+input M if (M > 100 )
+output "Wrong Number"
+else
+if (M >= 90)
+output "Excellent"
+else
+if (M >= 80)
+output "Very Good"
+else
+if (M >= 70)
+output "Good"
+else
+if (M >= 60)
+output "Not Bad"
+else
+output "Failed :( "

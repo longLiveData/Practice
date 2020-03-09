@@ -1,0 +1,5 @@
+{ "command": "room", "venue": "Zoo", "room": "Penguin", "size": "small" }
+{ "command": "room", "venue": "Zoo", "room": "Hippo", "size": "large" }
+{ "command": "room", "venue": "Zoo", "room": "Elephant", "size": "large" }
+{ "command": "room", "venue": "Gardens", "room": "Figtree", "size": "large" }
+{ "command": "request", "id": "Annual Meeting", "start": "2019-03-25", "end": "2019-03-26", "small": 3, "medium": 0, "large": 1 }

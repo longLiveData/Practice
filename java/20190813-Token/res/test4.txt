@@ -1,0 +1,14 @@
+!! Calculate the sum of a series of integer numbers 
+ 
+variable NN: integer     !! The number of numbers in the series variable N : integer       !! one of the numbers of the series variable sum : integer   !! holds the sum of the numbers 
+ 
+output "How many numbers are there in the series  :" 
+input NN 
+set sum =0 
+repeat NN times 
+{     
+output "Enter a number: "     
+input N     
+set sum = sum + N 
+} 
+output "The sum = " , sum 

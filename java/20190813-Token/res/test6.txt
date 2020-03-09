@@ -1,0 +1,16 @@
+!! The factorial of a integer number 
+variable n , fact , w : integer 
+input n 
+if (n < 0)    
+output "Error" 
+else 
+{    
+fact = 1    
+w = n    
+repeat while (w  > 0)    
+{       
+fact = fact * w       
+w = w  - 1    
+}   
+output "The factorial of  " ,  n , "=" , fact 
+}

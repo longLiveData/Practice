@@ -1,0 +1,17 @@
+!! Solve a quadratic equation  of the general form: 
+!! Ax^2 + Bx + C = 0 
+!!---------------------------------------------------------------------------------------------------------- 
+ 
+variable A , B , C : real 
+variable delta : real 
+variable x1 , x2 : real 
+input A , B , C 
+set delta = B^2 ¨C 4 * A * C 
+if (delta < 0) 
+{    
+output "Cannot be solved! "    
+stop 
+} 
+set x1 = (-B ¨C sqrt (delta) )  /  (2 * A) 
+set x2 = (-B + sqrt (delta) ) /   (2 * A) 
+output x1 , x2 

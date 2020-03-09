@@ -1,0 +1,18 @@
+!! find the minimum number in a series of integer numbers 
+variable NN, N, Min, n  : integer 
+output "How many numbers ? " 
+input NN 
+input N 
+Min = N 
+n = 0 
+repeat while (n < NN-1) 
+{   
+output "Enter a number: "   
+input N   
+if (N < Min)   
+{      
+Min = N   
+}   
+n = n + 1 
+} 
+output "The Min =" , Min 
